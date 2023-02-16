@@ -1,13 +1,10 @@
-package main
+package handler
 
 import (
 	"fmt"
-	"time"
+	"net/http"
 )
 
-func main() {
-	fmt.Println("Hello, World!")
-	fmt.Println("Welcome to the playground!")
-
-	fmt.Println("The time is", time.Now())
+func Handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
 }
