@@ -10,10 +10,13 @@ import (
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	server := New()
-	
+	connectDB := 0 
 	 db, err := sql.Open("mysql", "nn9iehurcse16wz1goup:pscale_pw_3Kcm1dFxnmkdImRfFRXPnuygPQYfhE7jUckHW49pr4n@tcp(ap-southeast.connect.psdb.cloud)/it_asset")
     if err != nil {
-        panic(err.Error())
+	connectDB = -1
+        panic(err.Error())	    
+    } else {
+	connectDB = 1    
     }
     defer db.Close()
 
