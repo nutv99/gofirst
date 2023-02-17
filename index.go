@@ -40,7 +40,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	server.GET("/user/:id", func(context *Context) {
 		context.JSON(400, H{
 			"data": H{
-				"id": context.Param("id"),
+				"idnew": connectDB,
 				"conncetdb": connectDB,
 			},
 		})
