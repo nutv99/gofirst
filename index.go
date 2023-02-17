@@ -41,6 +41,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		context.JSON(400, H{
 			"data": H{
 				"id": context.Param("id"),
+				"conncetdb": connectDB,
 			},
 		})
 	})
