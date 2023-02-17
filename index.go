@@ -3,8 +3,9 @@ package handler
 import (
 	"fmt"
 	"net/http"
-
-	. "github.com/tbxark/g4vercel"
+         "database/sql"
+         "github.com/go-sql-driver/mysql"
+	."github.com/tbxark/g4vercel"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
