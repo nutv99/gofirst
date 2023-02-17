@@ -4,12 +4,10 @@ import (
 	"fmt"
 	
 	
-	"gorm.io/driver/mysql"	
+	
        ."github.com/tbxark/g4vercel"
 )
 
-var Db *gorm.DB
-var err error
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	server := New()
