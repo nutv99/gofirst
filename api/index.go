@@ -12,6 +12,14 @@ import (
 var Db *gorm.DB
 var err error
 
+type User struct {
+	gorm.Model
+	UserName string
+	Password string
+	FullName string
+	Avatar   string
+}
+
 func Handler(w http.ResponseWriter, r *http.Request) {
 	server := New()
 	
@@ -21,6 +29,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic("failed to connect database")
 	}
+	Db.AutoMigrate(&User{})
 
 	server.GET("/", func(context *Context) {
 		context.JSON(200, H{
