@@ -4,12 +4,23 @@ package handler
 import (
 	"fmt"
 	"net/http"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 
 	. "github.com/tbxark/g4vercel"
 )
+var Db *gorm.DB
+var err error
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	server := New()
+	
+	GOLANGMYSQL_DNS="lbg5pjees347lrun2wdl:pscale_pw_CgPWWfYLYTy3ziSn28WizLQ3fpt3dTTU24kgX82qxNA@tcp(ap-southeast.connect.psdb.cloud)/it_asset?tls=true"
+	dsn := GOLANGMYSQL_DNS
+	Db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database")
+	}
 
 	server.GET("/", func(context *Context) {
 		context.JSON(200, H{
