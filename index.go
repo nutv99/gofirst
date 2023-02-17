@@ -10,6 +10,12 @@ import (
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	server := New()
+	
+	 db, err := sql.Open("mysql", "nn9iehurcse16wz1goup:pscale_pw_3Kcm1dFxnmkdImRfFRXPnuygPQYfhE7jUckHW49pr4n@tcp(ap-southeast.connect.psdb.cloud)/it_asset")
+    if err != nil {
+        panic(err.Error())
+    }
+    defer db.Close()
 
 	server.GET("/", func(context *Context) {
 		context.JSON(200, H{
