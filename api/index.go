@@ -35,6 +35,14 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			},
 		})
 	})
+	
+	server.GET("/usersss/:id", func(context *Context) {
+		context.JSON(400, H{
+			"data": H{
+				"id": context.Param("id"),
+			},
+		})
+	})
 	server.GET("/long/long/long/path/*test", func(context *Context) {
 		context.JSON(200, H{
 			"data": H{
