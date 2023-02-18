@@ -1,5 +1,5 @@
 
-package handler
+package main
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ type User struct {
 	Avatar   string
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func main(w http.ResponseWriter, r *http.Request) {
 	server := New()
 	
 	GOLANGMYSQL_DNS :="lbg5pjees347lrun2wdl:pscale_pw_CgPWWfYLYTy3ziSn28WizLQ3fpt3dTTU24kgX82qxNA@tcp(ap-southeast.connect.psdb.cloud)/it_asset?tls=true"
