@@ -1,20 +1,19 @@
-package main
+
+package handler
 
 import (
 	"fmt"
 	"net/http"
-         "database/sql"
-         "github.com/go-sql-driver/mysql"
-	."github.com/tbxark/g4vercel"
+
+	. "github.com/tbxark/g4vercel"
 )
 
-func main(w http.ResponseWriter, r *http.Request) {
+func Handler(w http.ResponseWriter, r *http.Request) {
 	server := New()
-	
 
 	server.GET("/", func(context *Context) {
 		context.JSON(200, H{
-			"message": "hello go from vercel by nutv99 !!!!",
+			"message": "hello go from vercel !!!!",
 		})
 	})
 	server.GET("/hello", func(context *Context) {
@@ -32,8 +31,7 @@ func main(w http.ResponseWriter, r *http.Request) {
 	server.GET("/user/:id", func(context *Context) {
 		context.JSON(400, H{
 			"data": H{
-				"idnew": connectDB,
-				"conncetdb": connectDB,
+				"id": context.Param("id"),
 			},
 		})
 	})
