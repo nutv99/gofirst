@@ -36,7 +36,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			"message": "hello go from vercel !!!!",
 		})
 	})
-	server.GET("/hello", func(context *Context) {
+	server.GET("/hello888", func(context *Context) {
 		name := context.Query("name")
 		if name == "" {
 			context.JSON(400, H{
