@@ -1,5 +1,5 @@
 
-package handler
+package handler999
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	. "github.com/tbxark/g4vercel"
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func Handler999(w http.ResponseWriter, r *http.Request) {
 	server := New()
 
 	server.GET("/", func(context *Context) {
