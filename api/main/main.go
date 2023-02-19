@@ -1,22 +1,45 @@
-// Package api ...
 package api
 
 import (
+	"fmt"
 	"net/http"
 
-	"github.com/gorilla/mux"
-	"github.com/gustavocd/demo-vercel/api/users"
+	. "github.com/tbxark/g4vercel"
 )
 
-// API represents the entry point for all our serverless functions.
 func API(w http.ResponseWriter, r *http.Request) {
-	router := mux.NewRouter()
+	server := New()
 
-	router.HandleFunc("/api/users", users.Create).Methods(http.MethodPost)
-	router.HandleFunc("/api/users", users.FetchAll).Methods(http.MethodGet)
-	router.HandleFunc("/api/users/{id}", users.Update).Methods(http.MethodPut)
-	router.HandleFunc("/api/users/{id}", users.Remove).Methods(http.MethodDelete)
-	router.HandleFunc("/api/users/{id}", users.FetchByID).Methods(http.MethodGet)
-
-	router.ServeHTTP(w, r)
+	server.GET("/", func(context *Context) {
+		context.JSON(200, H{
+			"message": "hello go from vercel in api-main !!!!",
+		})
+	})
+	server.GET("/hello", func(context *Context) {
+		name := context.Query("name")
+		if name == "" {
+			context.JSON(400, H{
+				"message": "name not found",
+			})
+		} else {
+			context.JSON(200, H{
+				"data": fmt.Sprintf("Hello %s!", name),
+			})
+		}
+	})
+	server.GET("/user/:id", func(context *Context) {
+		context.JSON(400, H{
+			"data": H{
+				"id": context.Param("id"),
+			},
+		})
+	})
+	server.GET("/long/long/long/path/*test", func(context *Context) {
+		context.JSON(200, H{
+			"data": H{
+				"url": context.Path,
+			},
+		})
+	})
+	server.Handle(w, r)
 }
